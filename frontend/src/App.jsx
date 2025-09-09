@@ -6,6 +6,7 @@ import Dashboard from "./page/Dashboard"
 import Product from "./page/Product"
 import AddProduct from "./page/AddProduct"
 import Update from "./page/UpdateProduct"
+import Cart from "./page/cart"
 function App(){
   return <div>
     <div>
@@ -19,6 +20,7 @@ function App(){
        <Route path="/product" element= {<Product/>}/>
        <Route path="/AddProduct" element= {<AddProduct/>}/>
        <Route path="/UpdateProduct/:id" element= {<Update/>}/>
+       <Route path="/cart" element= {<Cart/>}/>
      </Routes>
   </div>
 }

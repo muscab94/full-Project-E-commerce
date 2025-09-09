@@ -1,4 +1,5 @@
 import { User, ShoppingCart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -32,10 +33,10 @@ function Header() {
         </button>
 
         {/* Cart + Icon */}
-        <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition">
+        <Link to= "/cart" ><button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition">
           <ShoppingCart size={20} />
           <span>Cart</span>
-        </button>
+        </button> </Link>
       </div>
     </header>
   );

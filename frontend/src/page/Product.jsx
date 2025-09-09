@@ -51,11 +51,11 @@ function Product() {
             </thead>
 
             <tbody>
-              
-              {product.map((item, index) => ( 
 
-                
-                  <tr key={index +1} className="border-b hover:bg-gray-50">
+              {product.map((item, index) => (
+
+
+                <tr key={index + 1} className="border-b hover:bg-gray-50">
                   <td className="py-3 px-4">{item.prId}</td>
                   <td className="py-3 px-4">
                     <img
@@ -71,12 +71,22 @@ function Product() {
                   </td>
                   <td className="py-3 px-4">{item.desc}</td>
                   <td className="py-3 px-4">
-                    <span className="px-3 py-1 rounded-full text-sm bg-green-100 text-green-600">
+                    <span className={ `px-3 py-1 rounded-full text-sm bg-green-100  ${item.status === "Available" ? "text-green-600 bg-green-200 " : "text-red-800 bg-red-200"  }   `}>
                       {item.status}
                     </span>
+                    {/* <span
+                      className={`px-3 py-1 rounded-full text-sm font-medium 
+                     ${item.status === "Available"
+                          ? "bg-green-100 text-green-600"
+                          : "bg-red-100 text-red-600"
+                        }`}
+                    >
+                      h
+                    </span> */}
+
                   </td>
                   <td className="py-3 px-4 flex gap-3">
-                    <Link to= {`/UpdateProduct/${item._id}`} ><button className="text-blue-600 hover:text-blue-800">
+                    <Link to={`/UpdateProduct/${item._id}`} ><button className="text-blue-600 hover:text-blue-800">
                       <Edit size={18} />
                     </button> </Link>
                     <button

@@ -16,4 +16,26 @@ const ProductSchema = mongoose.Schema({
 
 ProductSchema.plugin(AutoIncrement, { inc_field: 'prId' });
 
+
+ProductSchema.pre("save", function(next) {
+    this.status = this.quantity > 0 ? "Available" : "out of stock"
+    next()
+})
+
+
+
+ProductSchema.pre("updateOne", function(next) {
+    const update  = this.getUpdate()
+
+    const quantity = update.$set?.quantity
+
+    if(quantity !== undefined) {
+        update.$set.status = quantity > 0 ? "Available" : "out of stock"
+    }
+    next()
+})
+
+
+
+
 module.exports = mongoose.model("product", ProductSchema)
