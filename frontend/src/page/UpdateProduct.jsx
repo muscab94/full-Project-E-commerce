@@ -10,6 +10,7 @@ function Update() {
   const [price, setPrice] = useState("");
   const [desc, setDesc] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [category, setCategory] = useState("");
   const [prImage, setPrImage] = useState(null);
   const [preview, setPreview] = useState(null);
 
@@ -27,6 +28,7 @@ function Update() {
         setPrice(data.price);
         setDesc(data.desc);
         setQuantity(data.quantity);
+        setCategory(data.category);
         setPreview(data.image); // sawirka jira
       })
       .catch((error) => console.log("Error fetching product:", error));
@@ -41,6 +43,7 @@ function Update() {
     formData.append("price", price);
     formData.append("desc", desc);
     formData.append("quantity", quantity);
+    formData.append("category", category);
     if (prImage) {
       formData.append("images", prImage);
     }
@@ -62,6 +65,7 @@ function Update() {
     setPrice("");
     setDesc("");
     setQuantity("");
+    setCategory("");
     setPrImage(null);
     setPreview(null);
   };
@@ -130,6 +134,17 @@ function Update() {
                 value={desc}
                 onChange={(e) => setDesc(e.target.value)}
                 placeholder="Short description about the product..."
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-200"
+              />
+            </div>
+            {/*  */}
+             <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">category</label>
+              <textarea
+                rows="4"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                placeholder="Category..."
                 className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-200"
               />
             </div>

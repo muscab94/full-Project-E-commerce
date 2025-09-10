@@ -9,6 +9,7 @@ function AddProduct() {
   const [price, setPrice] = useState("");
   const [desc, setDesc] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [categaroy, setCategory] = useState("");
   const [prImage, setPrImage] = useState(null);
 
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ function AddProduct() {
     formData.append("price", price);
     formData.append("desc", desc);
     formData.append("quantity", quantity);
+    formData.append("category", categaroy);
     formData.append("images", prImage);
 
     axios.post("http://localhost:7000/create/product", formData).then(() => {
@@ -34,6 +36,7 @@ function AddProduct() {
     setPrice("");
     setDesc("");
     setQuantity("");
+    setCategory("");
     setPrImage(null);
   };
 
@@ -103,6 +106,19 @@ function AddProduct() {
                 rows="4"
                 value={desc}
                 onChange={(e) => setDesc(e.target.value)}
+                placeholder="Short description about the product..."
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-200"
+              />
+            </div>
+            {/*  */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Category
+              </label>
+              <textarea
+                rows="4"
+                value={categaroy}
+                onChange={(e) => setCategory(e.target.value)}
                 placeholder="Short description about the product..."
                 className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-200"
               />

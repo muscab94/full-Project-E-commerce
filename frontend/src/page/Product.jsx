@@ -45,6 +45,7 @@ function Product() {
                 <th className="py-3 px-4">Quantity</th>
                 <th className="py-3 px-4">Price</th>
                 <th className="py-3 px-4">Desc</th>
+                <th className="py-3 px-4">category</th>
                 <th className="py-3 px-4">Status</th>
                 <th className="py-3 px-4">Action</th>
               </tr>
@@ -69,7 +70,8 @@ function Product() {
                   <td className="py-3 px-4 text-blue-600 font-semibold">
                     ${item.price}
                   </td>
-                  <td className="py-3 px-4">{item.desc}</td>
+                  <td className="py-3 px-3">{item.desc}</td>
+                   <td className="py-3 px-3">{item.category}</td>
                   <td className="py-3 px-4">
                     <span className={ `px-3 py-1 rounded-full text-sm bg-green-100  ${item.status === "Available" ? "text-green-600 bg-green-200 " : "text-red-800 bg-red-200"  }   `}>
                       {item.status}

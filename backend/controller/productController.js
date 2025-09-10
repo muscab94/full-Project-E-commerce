@@ -11,6 +11,7 @@ const createProduct = async (req,res) => {
         price: price,
         desc: desc,
         quantity: quantity,
+         category: category,
         prImage: req.file.filename
   })
 
@@ -23,12 +24,29 @@ const createProduct = async (req,res) => {
  }
 }
 // read
-const readProduct = async (req,res) => {
-   const newData = await  productModel.find()
-   if(newData){
-      res.send(newData)
-   }
-}
+const readProduct = async (req, res) => {
+  try {
+    const {category} = req.body || {}
+
+    let filterData = {}
+    if(category) {
+      filterData = {category}
+    }
+
+
+    const newData = await productModel.find(filterData);
+    
+    if (!newData || newData.length === 0) {
+      return res.status(404).json({ message: "No products found" });
+    }
+
+    res.status(200).json(newData);
+  } catch (error) {
+    console.error("Error while reading products:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
 // readSingle
 const readSingleProduct = async (req,res) => {
    const readSingle = await productModel.find({_id: req.params.id})
@@ -53,6 +71,7 @@ const UpdateProduct = async (req, res) => {
                 name: req.body.title,
                 desc: req.body.desc,
                 price: req.body.price,
+                category: req.body.category,
                  quantity: req.body.quantity
             }
         }

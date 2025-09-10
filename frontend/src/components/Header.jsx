@@ -1,7 +1,17 @@
 import { User, ShoppingCart } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
+
+  const getItem = localStorage.getItem("customer")
+
+  const navigate = useNavigate()
+  const logOut = () => {
+    localStorage.clear()
+    navigate("/")
+  }
+
+
   return (
     <header className="flex items-center justify-between px-8 py-4 shadow-md bg-white">
       {/* Left: Logo */}
@@ -20,20 +30,39 @@ function Header() {
       </nav>
 
       {/* Right: Actions */}
+      {
+        getItem ?
+          <div className="flex gap-4  items-center">
+            <div className="bg-cyan-500 w-10 h-10 rounded-full text-center">
+              <h1 className="text-3xl">{JSON.parse(getItem).data?.customer.name[0]}</h1>
+            </div>
+            <button onClick={logOut} className="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition">
+              logout
+            </button>
+          </div>
+          :
+          <div className="flex gap-4 items-center">
+            <Link to="/form">
+              <div className="flex items-center gap-2 cursor-pointer hover:text-blue-600">
+                <User size={22} />
+                <h1 className="font-medium">Login</h1>
+              </div></Link>
+
+            {/* Registration Button */}
+            <Link to="/Registration">
+              <button className="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition">
+                Registration Customer
+              </button>
+            </Link>
+          </div>
+      }
+
       <div className="flex items-center gap-4">
         {/* Login + Icon */}
-        <div className="flex items-center gap-2 cursor-pointer hover:text-blue-600">
-          <User size={22} />
-          <h1 className="font-medium">Login</h1>
-        </div>
 
-        {/* Registration Button */}
-        <button className="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition">
-          Registration Customer
-        </button>
 
         {/* Cart + Icon */}
-        <Link to= "/cart" ><button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition">
+        <Link to="/cart" ><button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition">
           <ShoppingCart size={20} />
           <span>Cart</span>
         </button> </Link>

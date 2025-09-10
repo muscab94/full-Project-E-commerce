@@ -7,6 +7,8 @@ import Product from "./page/Product"
 import AddProduct from "./page/AddProduct"
 import Update from "./page/UpdateProduct"
 import Cart from "./page/cart"
+import FormLogin from "./page/formLogin"
+import FormRegistration from "./page/formRegistration"
 function App(){
   return <div>
     <div>
@@ -21,6 +23,8 @@ function App(){
        <Route path="/AddProduct" element= {<AddProduct/>}/>
        <Route path="/UpdateProduct/:id" element= {<Update/>}/>
        <Route path="/cart" element= {<Cart/>}/>
+       <Route path="/form" element= {<FormLogin/>}/>
+       <Route path="/Registration" element= {<FormRegistration/>}/>
      </Routes>
   </div>
 }

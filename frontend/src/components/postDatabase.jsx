@@ -6,6 +6,8 @@ function PostData() {
 
     const [Data, setData] = useState([])
 
+    const [category, setCategory] = useState([])
+
     const handleReadProduct = () => {
         axios.get("http://localhost:7000/read/product").then((res) => {
             setData(res.data)
@@ -32,9 +34,10 @@ function PostData() {
 
 
 
-    return (<div>
+    return ( 
+          <div>
 
-        <div class="flex justify-end mt-10 gap-4 p-4">
+    <div class="flex justify-end mt-10 gap-4 p-4">
             <label class="flex items-center gap-2 px-3 py-2 rounded-full border cursor-pointer hover:bg-gray-100">
                 <input type="radio" name="smart phone" class="text-red-500 focus:ring-red-500" />
                 <span class="text-sm font-medium text-gray-700">Smart Phone</span>

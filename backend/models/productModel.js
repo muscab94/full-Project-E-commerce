@@ -8,6 +8,7 @@ const ProductSchema = mongoose.Schema({
     quantity: {type: Number, required: true},
     prImage: {type: String, required: true},
     status: {type: String,  enum: ["Available", "out of stock"], default: "Available"},
+    category: {type:String, required:true}
 },
 {
     timestaps: true
