@@ -9,6 +9,7 @@ import Update from "./page/UpdateProduct"
 import Cart from "./page/cart"
 import FormLogin from "./page/formLogin"
 import FormRegistration from "./page/formRegistration"
+import ProtectedRouter from "./page/protectedRouter"
 function App(){
   return <div>
     <div>
@@ -18,8 +19,25 @@ function App(){
      <PostData/> */}
      <Routes>
        <Route path="/" element= {<SectionOne/>} />
-       <Route path="/Dashboard" element= {<Dashboard/>}/>
-       <Route path="/product" element= {<Product/>}/>
+       {/* <Route path="/Dashboard" element= {<Dashboard/>}/> */}
+               <Route
+          path="/Dashboard"
+          element={
+            <ProtectedRouter>
+              <Dashboard />
+            </ProtectedRouter>
+          }
+        />
+
+       {/* <Route path="/product" element= {<Product/>}/> */}
+        <Route
+          path="/product"
+          element={
+            <ProtectedRouter>
+              <Product />
+            </ProtectedRouter>
+          }
+        />
        <Route path="/AddProduct" element= {<AddProduct/>}/>
        <Route path="/UpdateProduct/:id" element= {<Update/>}/>
        <Route path="/cart" element= {<Cart/>}/>

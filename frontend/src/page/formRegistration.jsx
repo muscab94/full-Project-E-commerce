@@ -11,19 +11,16 @@ export default function FormRegistration()
   const [phone,setPhone] = useState("")
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
+  // 
+  const [active, setactive] = useState("customer")
 
   const navigate = useNavigate()
-
+ 
   const handleRegister  = () => {
-    axios.post("http://localhost:7000/create/customer",
-      {
-        name:name,
-        phone:phone,
-        email:email,
-        password:password
-      }
-    ).then(() => {
-      alert("thanks you're welcome")
+     const url = active === "customer" ? "http://localhost:7000/create/customer" : "http://localhost:7000/create/Admin"
+     const payload =  active === "customer" ? {name: name, phone: phone, email: email, password: password} : {name: name, email: email, password: password}
+    axios.post(url, payload).then(() => {
+      alert(`${active} Successfull` )
       navigate("/form")
     }).catch((error) => {
       alert("email exisist before")
@@ -35,11 +32,17 @@ export default function FormRegistration()
            <div>
             <Header/>
            </div>
+           
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      
       <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          Create Account
-        </h2>
+        <div className="flex gap-8 justify-center">
+        <button onClick={() => setactive("customer")} className={`px-12 py-3 rounded-xl ${active === "customer" ? "bg-blue-500 text-white" : "border-2 border-black text-black "  }`} >customer</button>
+        <button onClick={() => setactive("Admin")} className={`px-12 py-3 rounded-xl ${active === "Admin" ? "bg-blue-500 text-white" : "border-2 border-black text-black "  }`} >admin</button>
+      </div>
+        <h2 className="text-2xl font-bold  text-gray-800 mb-6">
+          Registration
+           </h2>
 
         <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
           <div>
@@ -62,7 +65,7 @@ export default function FormRegistration()
             />
           </div>
 
-          <div>
+          <div  style={{display: active !== "customer" ? "none" : "" }} >
             <label className="block text-gray-600 mb-2">Phone Number</label>
             <input value={phone}
             onChange={(e) => setPhone(e.target.value)}
@@ -86,7 +89,7 @@ export default function FormRegistration()
             type="button"
             className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition"
           >
-            Register
+           {active === "customer" ? "Register Customer" : "Register Admin" }
           </button>
         </form>
 

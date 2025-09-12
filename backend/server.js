@@ -4,6 +4,7 @@ require("dotenv").config()
 const productRouter = require("./router/productRouter")
 const customerRoutert = require("./router/customerRouter")
 const orderRouter = require("./router/orderRouter")
+const adminRouter = require("./router/AdminRouter")
 const cors = require("cors")
 
 
@@ -21,6 +22,7 @@ app.use(cors())
 app.use(productRouter)
 app.use(customerRoutert)
 app.use(orderRouter)
+app.use(adminRouter)
 app.use("/allimages", experess.static("images"))
 
 app.listen(PORT, () => console.log(`server is runing....${PORT}`))

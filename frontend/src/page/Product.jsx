@@ -29,6 +29,7 @@ function Product() {
   }, []);
 
   return (
+    <>
     <div className="flex">
       <DashboardSidebar />
 
@@ -105,6 +106,7 @@ function Product() {
         </div>
       </div>
     </div>
+    </>
   );
 
 }

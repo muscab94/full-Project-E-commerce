@@ -54,5 +54,12 @@ const loginCustomer = async (req, res) => {
     }
 }
 
+const readCustomer = async(req,res) => {
+    const readData = await customerModel.find()
+    if(readData){
+        res.send(readData)
+    }
+}
 
-module.exports = {createCustomer, loginCustomer}
+
+module.exports = {createCustomer, loginCustomer, readCustomer}
