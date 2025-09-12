@@ -1,4 +1,5 @@
 
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 function Cart() {
@@ -14,6 +15,59 @@ function Cart() {
     setProducts(update)
   },[])
 
+
+   const getCustomer = localStorage.getItem("customer")
+
+   let customerOrder = ""
+    // 
+   if(getCustomer){
+    customerOrder = JSON.parse(getCustomer).data.customer.name
+   }
+
+    
+
+   const handleOrder = () => {
+    console.log(productsData)
+  axios.post("http://localhost:7000/create/order", {
+    "customer": customerOrder,
+    "products": Array.isArray(productsData) ? productsData.map(item => ({
+      "productId": item._id,
+      "quantity": item.quantity
+    })) : []
+  })
+  .then(() => {
+    alert("success order...")
+  })
+  .catch(err => {
+    console.log("Order error:", err.response?.data || err.message)
+  })
+}
+
+  // 
+  //  const handleOrder = () => {
+  //   console.log(productsData)
+  //   axios.post("http://localhost:7000/create/order", {
+  //     "customer": customerOrder,
+  //     "products": productsData.map(Item => ({
+  //         "productId": Item._id,
+  //         "quantity": Item.quantity
+  //     })).then(() => {
+  //       alert("sucess order...")
+  //     })
+  //   })
+  //  }
+
+  // const handleOrder = () => {
+  //   axios.post("http://localhost:7000/create/order",{
+  //     "customer": customerOrder,
+  //       "products": productsData.map(item => ({
+  //       "productId": item._id,
+  //       "quantity": item.quantity
+  //     })).then(() => {
+  //       alert("success order...")
+  //     })
+  //   })
+  // }
 
 
   const handledelete = (id) => {
@@ -133,7 +187,7 @@ function Cart() {
             <span>${TotalPrice}</span>
           </div>
 
-          <button className="w-full py-3 bg-purple-600 text-white font-semibold rounded hover:bg-purple-700">
+          <button onClick={handleOrder} className="w-full py-3 bg-purple-600 text-white font-semibold rounded hover:bg-purple-700">
             CHECKOUT
           </button>
         </div>

@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 require("dotenv").config()
 const productRouter = require("./router/productRouter")
 const customerRoutert = require("./router/customerRouter")
+const orderRouter = require("./router/orderRouter")
 const cors = require("cors")
 
 
@@ -19,6 +20,7 @@ mongoose.connect(process.env.db_Url).then(() => {
 app.use(cors())
 app.use(productRouter)
 app.use(customerRoutert)
+app.use(orderRouter)
 app.use("/allimages", experess.static("images"))
 
 app.listen(PORT, () => console.log(`server is runing....${PORT}`))

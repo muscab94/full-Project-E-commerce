@@ -22,7 +22,7 @@ function Header() {
       {/* Middle: Navigation */}
       <nav>
         <ul className="flex gap-8 font-medium text-gray-700">
-          <li className="hover:text-blue-600 cursor-pointer">Home</li>
+          <Link to= "/"><li className="hover:text-blue-600 cursor-pointer">Home</li></Link>
           <li className="hover:text-blue-600 cursor-pointer">Categories</li>
           <li className="hover:text-blue-600 cursor-pointer">Best Sellers</li>
           <li className="hover:text-blue-600 cursor-pointer">Contacts</li>
