@@ -21,7 +21,7 @@ function Dashboard() {
             <li className="hover:bg-blue-600 p-2 rounded cursor-pointer">Add Order</li>
             <li className="hover:bg-blue-600 p-2 rounded cursor-pointer">Reports</li>
             <li className="hover:bg-blue-600 p-2 rounded cursor-pointer">Setting</li>
-            <Link to= "/login"><li onClick={handleLogout} className="hover:bg-blue-600 p-2 rounded cursor-pointer">LogOut</li></Link>
+            <Link to= "/form"><li onClick={handleLogout} className="hover:bg-blue-600 p-2 rounded cursor-pointer">LogOut</li></Link>
           </ul>
         </nav>
       </aside>
